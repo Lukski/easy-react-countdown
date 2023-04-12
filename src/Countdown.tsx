@@ -2,48 +2,53 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 
 interface CountdownProps {
-    initialSeconds:number,
-    callbackOnEnd:(() => void) | null,
-    placeholder:string,
-    finishingMessage:string,
-    audioStart:number
+    targetDate : Date | null,
+    callbackOnEnd? : (() => void) | null,
+    placeholder? : string,
+    finishingMessage? : string,
+    audioStart? : number
 }
 
-function Countdown({initialSeconds, callbackOnEnd, placeholder, finishingMessage, audioStart}:CountdownProps){
-  const [currentSeconds, setCurrentSeconds] = useState(-1);
+function Countdown({targetDate = null, callbackOnEnd = null, placeholder = "0", finishingMessage = "0", audioStart = -1}:CountdownProps){
+  const currentSeconds = targetDate === null ? -1 : Math.floor((targetDate.getTime() - new Date().getTime()) / 1000);
+  // elapsedSeconds is currently only used to trigger a rerender every tick
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [uninitialized, setUninitialized] = useState(true);
   const worker = useRef<Worker | null>(null);
+
+  // cleanup on unmount
+  useEffect( () => () => endTimer(), [] );
 
   useEffect(() => {
     if(currentSeconds >= 0){
       tick();
-      if(currentSeconds === 0){
+      if(currentSeconds <= 0){
         if(worker.current !== null){
-            worker.current.terminate();
-            if(callbackOnEnd){
-                callbackOnEnd();
-            }
+          worker.current.terminate();
+          if(callbackOnEnd !== null){
+            callbackOnEnd();
+          }
         }
       }
     }
   }, [currentSeconds]);
 
   useEffect(() => {
-    startTimer(initialSeconds);
-  }, [initialSeconds]);
+    startTimer(currentSeconds);
+  }, [targetDate]);
 
   function startTimer(seconds:number){
     if(seconds > 0){
       if(worker.current){
         worker.current.terminate();
       }
+      // create webworker for 1 second intervals (needed for chrome to make sure it runs every second when tab is not in focus)
       const blob = new Blob([`(${countdownworker.toString()})()`], { type: "text/javascript" });
       worker.current = new Worker(URL.createObjectURL(blob));
       worker.current.onmessage = (e) => {
-        setCurrentSeconds((seconds) => seconds - 1);
+        setElapsedSeconds ((x) => x + 1);
       }
       worker.current.postMessage(seconds);
-      setCurrentSeconds(seconds);
       setUninitialized(false);
     }
   }
@@ -76,7 +81,6 @@ function Countdown({initialSeconds, callbackOnEnd, placeholder, finishingMessage
 
   function countdownworker(){
     let interval;
-
     onmessage = (event) => {
       interval = setInterval(function() {
         postMessage(event.data);
