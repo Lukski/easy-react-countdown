@@ -9,23 +9,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm run cy:run`
-
-Runs Cypress integration tests. This contains the important tests.
-
 ### `npm test`
 
-Jest tests. Not really in use as most tests work best as component tests (run using npm run cy:run)
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs Cypress integration tests
+
+### `npm run test:headed`
+
+Runs the Cypress integration tests in headed mode (with interface showing the component during the tests)
 
 ### `npm run build`
 
