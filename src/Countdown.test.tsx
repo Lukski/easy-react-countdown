@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Countdown from './Countdown';
 
 test('renders', () => {
-  render(<App />);
+  render(<Countdown targetDate={new Date(Date.now() + 1000)} />);
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 
 interface CountdownProps {
-    targetDate : Date | null,
+    targetDate? : Date | null,
     callbackOnEnd? : (() => void) | null,
     placeholder? : string,
     finishingMessage? : string,
@@ -60,22 +60,24 @@ function Countdown({targetDate = null, callbackOnEnd = null, placeholder = "0", 
   }
 
   function tick(){
-    let msg = new SpeechSynthesisUtterance();
-    if(currentSeconds === 0){
-      msg.text = finishingMessage;
-    }
-    else{
-      msg.text = (currentSeconds).toString();
-    }
-    msg.rate = 1.5;
-    msg.volume = 0.5;
-    if(currentSeconds <= 10){
-      msg.rate = 1;
-      msg.volume = 1;
-    }
-    if(audioStart === -1 || currentSeconds <= audioStart){
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(msg);
+    if ('speechSynthesis' in window) {
+      let msg = new SpeechSynthesisUtterance();
+      if(currentSeconds === 0){
+        msg.text = finishingMessage;
+      }
+      else{
+        msg.text = (currentSeconds).toString();
+      }
+      msg.rate = 1.5;
+      msg.volume = 0.5;
+      if(currentSeconds <= 10){
+        msg.rate = 1;
+        msg.volume = 1;
+      }
+      if(audioStart === -1 || currentSeconds <= audioStart){
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(msg);
+      }
     }
   }
 
