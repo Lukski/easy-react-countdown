@@ -90,7 +90,7 @@ function Countdown({targetDate = null, callbackOnEnd = null, placeholder = "0", 
     };
   }
 
-  return(<div>{uninitialized ? placeholder: currentSeconds}</div>);
+  return(<div className='simple-react-countdown'>{uninitialized ? placeholder: currentSeconds}</div>);
 }
 
 export default Countdown;
