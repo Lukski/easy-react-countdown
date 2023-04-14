@@ -1,6 +1,6 @@
 {
   "name": "easy-react-countdown",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple react Countdown component",
   "license": "MIT",
   "author": "Lukas Graf",
@@ -35,14 +35,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "dependencies": {
-    "@types/node": "^16.18.23",
-    "@types/react": "^18.0.34",
-    "@types/react-dom": "^18.0.11",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
-  },
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc  && tsc --module commonjs --outDir dist/cjs",
@@ -70,7 +62,16 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
     "cypress": "^12.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "react": ">=16"
   }
 }
