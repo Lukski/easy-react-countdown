@@ -1,11 +1,11 @@
 {
   "name": "easy-react-countdown",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple react Countdown component",
   "license": "MIT",
   "author": "Lukas Graf",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.es.js",
+  "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
