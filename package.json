@@ -16,9 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lukski/simple-react-countdown.git"
+    "url": "https://github.com/Lukski/easy-react-countdown.git"
   },
-  "homepage": "https://github.com/Lukski/simple-react-countdown",
+  "homepage": "https://github.com/Lukski/easy-react-countdown",
   "private": false,
   "files": [
     "dist",
