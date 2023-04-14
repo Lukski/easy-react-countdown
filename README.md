@@ -1,4 +1,4 @@
-# simple-react-countdown
+# easy-react-countdown
 A simple React Countdown Component
 
 # Getting started
