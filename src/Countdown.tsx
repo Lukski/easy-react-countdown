@@ -4,12 +4,12 @@ import { useRef, useState, useEffect } from 'react';
 interface CountdownProps {
     targetDate? : Date | null,
     callbackOnEnd? : (() => void) | null,
-    placeholder? : string,
+    placeholder? : JSX.Element,
     finishingMessage? : string,
     audioStart? : number
 }
 
-function Countdown({targetDate = null, callbackOnEnd = null, placeholder = "0", finishingMessage = "0", audioStart = -1}:CountdownProps){
+function Countdown({targetDate = null, callbackOnEnd = null, placeholder = (<div>0</div>), finishingMessage = "0", audioStart = -1}:CountdownProps){
   const currentSeconds = targetDate === null ? -1 : Math.floor((targetDate.getTime() - new Date().getTime()) / 1000);
   // elapsedSeconds is currently only used to trigger a rerender every tick
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
