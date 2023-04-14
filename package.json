@@ -1,7 +1,40 @@
 {
   "name": "simple-react-countdown",
   "version": "0.1.0",
-  "private": true,
+  "description": "A simple react Countdown component",
+  "license": "MIT",
+  "author": "Lukas Graf",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.es.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.mjs",
+      "types": "./dist/esm/index.d.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lukski/simple-react-countdown.git"
+  },
+  "homepage": "https://github.com/Lukski/simple-react-countdown",
+  "private": false,
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "keywords": [
+    "react",
+    "typescript",
+    "countdown",
+    "webworker",
+    "Speech"
+  ],
+  "peerDependencies": {
+    "react": ">=16"
+  },
   "dependencies": {
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.34",
@@ -12,10 +45,11 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc  && tsc --module commonjs --outDir dist/cjs",
     "test": "cypress run --component",
     "test:headed": "cypress run --component --headed --no-exit",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepublishOnly": "npm test"
   },
   "eslintConfig": {
     "extends": [
