@@ -1,28 +1,12 @@
 # simple-react-countdown
 A simple React Countdown Component
 
-# Getting Started with Create React App
+# Features
+* Audible Countdown using the Speechsynthesis browser API
+* Using webworkers to make sure the countdown actually runs every second, also on chrome when the tab is not focused
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Examples
 
-## Available Scripts
+# Props
 
-In the project directory, you can run:
-
-### `npm test`
-
-Runs Cypress integration tests
-
-### `npm run test:headed`
-
-Runs the Cypress integration tests in headed mode (with interface showing the component during the tests)
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Known Issues
